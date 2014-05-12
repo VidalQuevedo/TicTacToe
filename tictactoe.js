@@ -64,7 +64,22 @@
 	 				console.log('win column ' + i);
 	 				}
 	 			}
-	 		}	 		
+	 		}
+
+	 		// across from top to bottom
+ 			if (this.boardValues[0][0] != '') {
+ 				if (this.boardValues[0][0] == this.boardValues[1][1] && this.boardValues[1][1] == this.boardValues[2][2]) {
+ 				console.log('win across from top to bottom');
+ 				}
+ 			}
+
+ 			// across from bottom to top
+ 			if (this.boardValues[2][0] != '') {
+ 				if (this.boardValues[2][0] == this.boardValues[1][1] && this.boardValues[1][1] == this.boardValues[0][2]) {
+ 				console.log('win across from bottom to top');
+ 				}
+ 			}
+ 			 		
 
 	 	},
 	 	togglePlayerTurn: function(){
