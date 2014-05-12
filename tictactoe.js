@@ -26,17 +26,21 @@
 
 (function(T, $){
 	var T3 = function(){
-		this.playCount = 0;
-		this.maxPlays = 6;
-		this.playerTurn = 'x';
-		this.winner = '';
-		this.restartGame();
-		this.checkPlay();
+		this.startGame();
 		this.bindEvents();
 	}
 
 	T3.prototype = {
-		restartGame: function(){},
+		startGame: function(){
+			
+			// set properties
+			this.playerTurn = 'x';
+			this.winner = '';
+
+			// clear board
+			$('#t3 input').val('').removeAttr('disabled');
+
+		},
 		checkPlay: function(){
 
 	 		// get board values
@@ -107,7 +111,7 @@
  		endGame: function(winner){
 
 	 		// disable all inputs
-	 		$('#t3 input').attr('disable', 'disable');
+	 		$('#t3 input').attr('disabled', 'disabled');
 	 		
 	 		// display winning message
 	 		console.log(winner + ' wins!');
@@ -119,17 +123,18 @@
 	 	bindEvents: function(){
 	 		var t3 = this;
 	 		var winner = '';
-	 		$('#checkPlay').on('click', function(e){
-	 			// e.preventDefault();
-	 			t3.checkPlay();
+	 		$('#playAgain').on('click', function(e){
+	 			t3.startGame();
 	 		});
 
 	 		// on click
 	 		$('#t3 input').on('click', function(){
+	 			
 	 			if ($(this).empty()) {
 	 				
 	 				// assign current player's symbol
-	 				$(this).val(t3.playerTurn);
+	 				// and disable input
+	 				$(this).val(t3.playerTurn).attr('disabled', 'disabled');
 
 	 				// check play for winning matches
 	 				t3.checkPlay();
