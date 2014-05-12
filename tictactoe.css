@@ -1,7 +1,10 @@
 #t3 {
-	border: 1px solid #ccc;
-	text-align: center;
+	margin-top: 60px;
+	background-color: #EEE;
+	border-radius: 8px;
 }
-#t3 .col-xs-4{
-	border: 1px solid #ccc;
+#t3 .form-control {
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
