@@ -117,24 +117,25 @@
 	 		console.log(winner + ' wins!');
 	 		
 	 		// enable "play again" button
+	 		$('#play-again').removeAttr('disabled').toggleClass('btn-success');
 
 
 	 	},
 	 	bindEvents: function(){
 	 		var t3 = this;
 	 		var winner = '';
-	 		$('#playAgain').on('click', function(e){
+	 		$('#play-again').on('click', function(e){
 	 			t3.startGame();
 	 		});
 
 	 		// on click
 	 		$('#t3 input').on('click', function(){
 	 			
-	 			if ($(this).empty()) {
+	 			if ($(this).val() == '') {
 	 				
 	 				// assign current player's symbol
 	 				// and disable input
-	 				$(this).val(t3.playerTurn).attr('disabled', 'disabled');
+	 				$(this).val(t3.playerTurn);
 
 	 				// check play for winning matches
 	 				t3.checkPlay();

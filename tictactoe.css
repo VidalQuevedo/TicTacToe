@@ -1,10 +1,14 @@
 #t3 {
 	margin-top: 60px;
-	background-color: #EEE;
+	background-color: #CCC;
 	border-radius: 8px;
 }
 #t3 .form-control {
 	text-align: center;
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+
+#play-again {
+	margin-top:15px;
 }
