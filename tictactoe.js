@@ -28,9 +28,10 @@
 	 var T3 = function(){
 	 	this.playCount = 0;
 	 	this.maxPlays = 6;
-	 	this.playerTurn = 1; // 1 represents X, and 0 represents O
+	 	this.playerTurn = 'x';
 	 	this.restartGame();
 	 	this.checkPlay();
+	 	this.bindEvents();
 	 }
 
 	 T3.prototype = {
@@ -79,13 +80,15 @@
  				console.log('win across from bottom to top');
  				}
  			}
- 			 		
-
 	 	},
 	 	togglePlayerTurn: function(){
-	 		this.playerTurn = 1 - this.playerTurn;
+	 		if (this.playerTurn == 'x') {
+	 			this.playerTurn = 'o';
+	 		} else if (this.playerTurn == 'o') 
+	 		{
+	 			this.playerTurn = 'x';
+	 		}
 	 	},
-	 	bindEvents: function(){},
 	 	getBoardValues: function(){
 	 		var boardValues = [];
 	 		$('#t3 .row').each(function(i){
@@ -96,6 +99,22 @@
 	 			boardValues.push(boardRow);
 	 		});
 	 		this.boardValues = boardValues;
+	 	},
+	 	bindEvents: function(){
+	 		t3 = this;
+	 		$('#checkPlay').on('click', function(e){
+	 			// e.preventDefault();
+	 			t3.checkPlay();
+	 		});
+
+	 		// on click
+	 		$('#t3 input').on('click', function(){
+	 			if ($(this).empty()) {
+	 				$(this).val(t3.playerTurn);
+	 				t3.togglePlayerTurn();
+	 			}
+	 		});
+
 	 	}
 	 }
 
