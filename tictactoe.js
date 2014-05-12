@@ -25,18 +25,19 @@
 // 							- ask to play again
 
 (function(T, $){
-	 var T3 = function(){
-	 	this.playCount = 0;
-	 	this.maxPlays = 6;
-	 	this.playerTurn = 'x';
-	 	this.restartGame();
-	 	this.checkPlay();
-	 	this.bindEvents();
-	 }
+	var T3 = function(){
+		this.playCount = 0;
+		this.maxPlays = 6;
+		this.playerTurn = 'x';
+		this.winner = '';
+		this.restartGame();
+		this.checkPlay();
+		this.bindEvents();
+	}
 
-	 T3.prototype = {
-	 	restartGame: function(){},
-	 	checkPlay: function(){
+	T3.prototype = {
+		restartGame: function(){},
+		checkPlay: function(){
 
 	 		// get board values
 	 		this.getBoardValues();
@@ -47,14 +48,12 @@
 	 	},
 	 	checkWinningMatches: function(){
 	 		
-	 		var winner = '';
-
 	 		// by row
 	 		for (i=0; i<3; i++) {
 	 			if (this.boardValues[i][0] != '') {
 	 				if (this.boardValues[i][0] == this.boardValues[i][1] && this.boardValues[i][1] == this.boardValues[i][2]) {
 	 					console.log('win row ' + i);
-	 					winner = this.playerTurn;
+	 					this.winner = this.playerTurn;
 	 				}
 	 			}
 	 		}
@@ -64,64 +63,62 @@
 	 			if (this.boardValues[0][i] != '') {
 	 				if (this.boardValues[0][i] == this.boardValues[1][i] && this.boardValues[1][i] == this.boardValues[2][i]) {
 	 					// console.log('win column ' + i);
-	 					winner = this.playerTurn;
+	 					this.winner = this.playerTurn;
 	 				}
 	 			}
 	 		}
 
 	 		// across from top to bottom
- 			if (this.boardValues[0][0] != '') {
- 				if (this.boardValues[0][0] == this.boardValues[1][1] && this.boardValues[1][1] == this.boardValues[2][2]) {
- 					console.log('win across from top to bottom');
-	 				winner = this.playerTurn;
- 				}
- 			}
+	 		if (this.boardValues[0][0] != '') {
+	 			if (this.boardValues[0][0] == this.boardValues[1][1] && this.boardValues[1][1] == this.boardValues[2][2]) {
+	 				console.log('win across from top to bottom');
+	 				this.winner = this.playerTurn;
+	 			}
+	 		}
 
  			// across from bottom to top
  			if (this.boardValues[2][0] != '') {
  				if (this.boardValues[2][0] == this.boardValues[1][1] && this.boardValues[1][1] == this.boardValues[0][2]) {
  					// console.log('win across from bottom to top');
- 					winner = this.playerTurn;
+ 					this.winner = this.playerTurn;
  				}
  			}
 
- 			// if there's a winner, announce it!
- 			if (winner !== '') {
- 				this.announceWinner(winner);
+ 		},
+ 		togglePlayerTurn: function(){
+ 			if (this.playerTurn == 'x') {
+ 				this.playerTurn = 'o';
+ 			} else if (this.playerTurn == 'o') 
+ 			{
+ 				this.playerTurn = 'x';
  			}
-	 	},
-	 	togglePlayerTurn: function(){
-	 		if (this.playerTurn == 'x') {
-	 			this.playerTurn = 'o';
-	 		} else if (this.playerTurn == 'o') 
-	 		{
-	 			this.playerTurn = 'x';
-	 		}
-	 	},
-	 	getBoardValues: function(){
-	 		var boardValues = [];
-	 		$('#t3 .row').each(function(i){
-	 			var boardRow  = [];
-	 			$('#' + this.id + ' input').each(function(i){
-	 				boardRow.push($(this).val());
-	 			});
-	 			boardValues.push(boardRow);
-	 		});
-	 		this.boardValues = boardValues;
-	 	},
-	 	announceWinner: function(winner){
-	 		
+ 		},
+ 		getBoardValues: function(){
+ 			var boardValues = [];
+ 			$('#t3 .row').each(function(i){
+ 				var boardRow  = [];
+ 				$('#' + this.id + ' input').each(function(i){
+ 					boardRow.push($(this).val());
+ 				});
+ 				boardValues.push(boardRow);
+ 			});
+ 			this.boardValues = boardValues;
+ 		},
+ 		endGame: function(winner){
+
 	 		// disable all inputs
 	 		$('#t3 input').attr('disable', 'disable');
 	 		
 	 		// display winning message
 	 		console.log(winner + ' wins!');
+	 		
 	 		// enable "play again" button
 
 
 	 	},
 	 	bindEvents: function(){
-	 		t3 = this;
+	 		var t3 = this;
+	 		var winner = '';
 	 		$('#checkPlay').on('click', function(e){
 	 			// e.preventDefault();
 	 			t3.checkPlay();
@@ -136,9 +133,14 @@
 
 	 				// check play for winning matches
 	 				t3.checkPlay();
-
-	 				// toggle player
-	 				t3.togglePlayerTurn();
+	 				
+	 				// if there's a winner, announce it
+	 				if (t3.winner != '') {
+	 					t3.endGame(t3.winner);
+	 				} else {
+	 					// if no winner, toggle player turn
+	 					t3.togglePlayerTurn();
+	 				}
 
 	 			}
 	 		});
@@ -148,4 +150,4 @@
 
 	 T.t3 = new T3();
 
-})(T, jQuery);
+	})(T, jQuery);
