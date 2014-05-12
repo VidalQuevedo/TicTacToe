@@ -117,7 +117,7 @@
 	 		console.log(winner + ' wins!');
 	 		
 	 		// enable "play again" button
-	 		$('#play-again').removeAttr('disabled').toggleClass('btn-success');
+	 		$('#play-again').removeAttr('disabled').toggleClass('btn-success').text('Play again!');
 
 
 	 	},
