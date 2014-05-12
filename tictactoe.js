@@ -30,15 +30,58 @@
 	 	this.maxPlays = 6;
 	 	this.playerTurn = 1; // 1 represents X, and 0 represents O
 	 	this.restartGame();
+	 	this.checkPlay();
 	 }
 
 	 T3.prototype = {
 	 	restartGame: function(){},
-	 	checkPlay: function(){},
+	 	checkPlay: function(){
+
+	 		// get board values
+	 		this.getBoardValues();
+	 		console.log(this.boardValues);
+
+	 		// if (this.boardValues.length >= 5 ) {
+	 			this.checkWinningMatches();
+	 		// }
+
+	 	},
+	 	checkWinningMatches: function(){
+	 		
+	 		// by row
+	 		for (i=0; i<3; i++) {
+	 			if (this.boardValues[i][0] != '') {
+	 				if (this.boardValues[i][0] == this.boardValues[i][1] && this.boardValues[i][1] == this.boardValues[i][2]) {
+	 				console.log('win row ' + i);
+	 				}
+	 			}
+	 		}
+
+	 		// by column
+	 		for (i=0; i<3; i++) {
+	 			if (this.boardValues[0][i] != '') {
+	 				if (this.boardValues[0][i] == this.boardValues[1][i] && this.boardValues[1][i] == this.boardValues[2][i]) {
+	 				console.log('win column ' + i);
+	 				}
+	 			}
+	 		}	 		
+
+	 	},
 	 	togglePlayerTurn: function(){
 	 		this.playerTurn = 1 - this.playerTurn;
 	 	},
-	 	bindEvents: function(){}
+	 	bindEvents: function(){},
+	 	getBoardValues: function(){
+	 		var boardValues = [];
+	 		$('#t3 .row').each(function(i){
+	 			var boardRow  = [];
+	 			$('#' + this.id + ' input').each(function(i){
+	 				boardRow.push($(this).val());
+	 			});
+	 			boardValues.push(boardRow);
+	 		});
+	 		this.boardValues = boardValues;
+	 	}
 	 }
 
 	 T.t3 = new T3();
