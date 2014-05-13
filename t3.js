@@ -12,9 +12,12 @@
 			// set properties
 			this.playerTurn = 'x';
 			this.winner = '';
+			this.numPlays = 0;
 
 			// clear board
 			$('#t3 input').val('').removeAttr('disabled');
+			//hide alert
+			$('#alert').css('display', 'none');
 		},
 		checkPlay: function(){
 
@@ -30,7 +33,7 @@
 	 		for (i=0; i<3; i++) {
 	 			if (this.boardValues[i][0] != '') {
 	 				if (this.boardValues[i][0] == this.boardValues[i][1] && this.boardValues[i][1] == this.boardValues[i][2]) {
-	 					console.log('win row ' + i);
+	 					// console.log('win row ' + i);
 	 					this.winner = this.playerTurn;
 	 				}
 	 			}
@@ -49,7 +52,7 @@
 	 		// across from top to bottom
 	 		if (this.boardValues[0][0] != '') {
 	 			if (this.boardValues[0][0] == this.boardValues[1][1] && this.boardValues[1][1] == this.boardValues[2][2]) {
-	 				console.log('win across from top to bottom');
+	 				// console.log('win across from top to bottom');
 	 				this.winner = this.playerTurn;
 	 			}
 	 		}
@@ -61,11 +64,10 @@
  					this.winner = this.playerTurn;
  				}
  			}
+ 			if (this.numPlays == 9 && this.winner == '') {
+ 				this.winner = "No one";
+ 			}
 
- 			// if all spaces are filled, and there are no winners are declared, set "noone" as winner
- 			// if (this.boardValues.length == 9 && this.winner == '') {
- 			// 	this.winner = "No one";
- 			// }
  		},
  		togglePlayerTurn: function(){
  			if (this.playerTurn == 'x') {
@@ -92,10 +94,10 @@
 	 		$('#t3 input').attr('disabled', 'disabled');
 	 		
 	 		// display winning message
-	 		$('#alert').text(winner + ' wins!');
+	 		$('#alert').css('display', 'block');
+	 		$('#alert-text').text(this.winner.toUpperCase() + ' wins!');
 	 		
-	 		// enable "play again" button
-	 		$('#play-again').css('display', 'inline').removeAttr('disabled').toggleClass('btn-success').text('Play again!');
+	 		
 	 	},
 	 	bindEvents: function(){
 	 		var t3 = this;
@@ -112,6 +114,9 @@
 	 				// assign current player's symbol
 	 				// and disable input
 	 				$(this).val(t3.playerTurn);
+
+	 				// increase number of plays
+	 				t3.numPlays+= 1;
 
 	 				// check play for winning matches
 	 				t3.checkPlay();
