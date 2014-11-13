@@ -71,16 +71,6 @@ h1 {
 #message {
 	display:none;
 	font-size: 24px;
+	padding:8px 16px;
+	margin-left: -15px;
 }
-#start-game {
-}
-
-/*#alert {
-	text-align: right;
-	padding: 8px;
-	margin-top: 12px;z
-}
-*/
-/*#alert-text {
-	padding-top:7px;
-}*/

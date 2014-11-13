@@ -116,11 +116,14 @@
 	 		$('#t3 input').attr('disabled', 'disabled');
 	 		
 	 		// display winning message
-	 		this.updateMessage(this.winner.toUpperCase() + ' WINS!', 'bg-success');
+	 		if (this.winner !== 'No one') {
+	 			this.updateMessage(this.winner.toUpperCase() + ' WINS! =)', 'bg-success');
+	 		} else {
+	 			this.updateMessage(this.winner.toUpperCase() + ' WINS! =\'(', 'bg-danger');
+	 		}
 
+	 		$('#start-game').show();
 
-	 		
-	 		
 	 	},
 	 	highlightWinnerPlay: function(){
 	 		
@@ -145,7 +148,6 @@
 	 		}
 	 	},
 	 	updateMessage: function(message, cssClass){
-	 		console.log(message);
 	 		$('#message').html(message).removeClass().addClass(cssClass).fadeIn('fast');
 	 	},
 	 	bindEvents: function(){
