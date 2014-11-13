@@ -4,10 +4,11 @@ body { /* http://lea.verou.me/css3patterns/#lined-paper */
 	linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
 	linear-gradient(#eee .1em, transparent .1em);
 	background-size: 100% 3em;
+	font-family: 'gochi Hand', cursive;
+
 }
 
 h1, h2 {
-	font-family: 'gochi Hand', cursive;
 	text-align: center;
 	font-weight: 700;
 }
@@ -58,8 +59,6 @@ h1 {
 	border: none;
 	box-shadow: none;
 	background-color: transparent;
-	font-family: 'gochi Hand', cursive;
-	/*background-color: #ffe026;*/
 }
 
 #t3 .form-control.winner {
@@ -73,7 +72,6 @@ h1 {
 	display:none;
 }
 #start-game {
-	font-family: 'gochi Hand', cursive;
 }
 
 /*#alert {
