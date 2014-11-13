@@ -56,7 +56,8 @@
 	 		if (this.boardValues[0][0] != '') {
 	 			if (this.boardValues[0][0] == this.boardValues[1][1] && this.boardValues[1][1] == this.boardValues[2][2]) {
 	 				// console.log('win across from top to bottom');
-	 				this.winner = this.playerTurn;	 				
+	 				this.winner = this.playerTurn;
+	 				this.winnerPlay = "ttb";	 				
 	 			}
 	 		}
 
@@ -110,14 +111,22 @@
 	 	highlightWinnerPlay: function(){
 	 		
 	 		var winnerPlay = this.winnerPlay.split('-');
-	 		
+	 		console.log(winnerPlay);
 	 		switch (winnerPlay[0]) {
 	 			case 'column':
 	 				$('#t3 td:nth-child(' + (winnerPlay[1] + 1) + ') input').addClass('winner');
 	 			break;
 	 			case 'row':
-	 				console.log('row');
 	 				$('#t3 tr:nth-child(' + (winnerPlay[1] + 1) + ') input').addClass('winner');
+	 			break;
+	 			case 'ttb':
+	 				console.log('#t3 tr:nth-child(1) td:nth-child(1) input, ' +
+	 				  '#t3 tr:nth-child(2) td:nth-child(2) input, ' +
+	 				  '#t3 tr:nth-child(3) td:nth-child(3) input');
+
+	 				$('#t3 tr:nth-child(1) td:nth-child(1) input, ' +
+	 				  '#t3 tr:nth-child(2) td:nth-child(2) input, ' +
+	 				  '#t3 tr:nth-child(3) td:nth-child(3) input').addClass('winner');
 	 			break;
 	 		}
 	 	},
