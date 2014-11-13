@@ -79,7 +79,7 @@
  		},
  		getBoardValues: function(){
  			var boardValues = [];
- 			$('#t3 .row').each(function(i){
+ 			$('#t3 tr').each(function(i){
  				var boardRow  = [];
  				$('#' + this.id + ' input').each(function(i){
  					boardRow.push($(this).val());
