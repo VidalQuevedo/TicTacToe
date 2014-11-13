@@ -16,7 +16,7 @@
 			this.winnerPlay = '';
 
 			// clear board
-			$('#t3 input').val('').removeAttr('disabled');
+			$('#t3 input').val('').removeAttr('disabled').removeClass('winner');
 			//hide alert
 			$('#alert').css('display', 'none');
 		},
@@ -35,8 +35,9 @@
 	 			if (this.boardValues[i][0] != '') {
 	 				if (this.boardValues[i][0] == this.boardValues[i][1] && this.boardValues[i][1] == this.boardValues[i][2]) {
 	 					// console.log('win row ' + i);
+	 					var index = i + 1;
 	 					this.winner = this.playerTurn;
-	 					this.winnerPlay = 'row-' + i;	 					
+	 					this.winnerPlay = 'row-' + index;	 					
 	 				}
 	 			}
 	 		}
@@ -46,8 +47,9 @@
 	 			if (this.boardValues[0][i] != '') {
 	 				if (this.boardValues[0][i] == this.boardValues[1][i] && this.boardValues[1][i] == this.boardValues[2][i]) {
 	 					// console.log('win column ' + i);
+	 					var index = i + 1;
 	 					this.winner = this.playerTurn;
-	 					this.winnerPlay = 'column-' + i;
+	 					this.winnerPlay = 'column-' + index;
 	 				}
 	 			}
 	 		}
@@ -115,10 +117,13 @@
 	 		console.log(winnerPlay);
 	 		switch (winnerPlay[0]) {
 	 			case 'column':
-	 				$('#t3 td:nth-child(' + (winnerPlay[1] + 1) + ') input').addClass('winner');
+	 				console.log(winnerPlay);
+	 				console.log('#t3 td:nth-child(' + (winnerPlay[1]) + ') input');
+	 				$('#t3 td:nth-child(' + winnerPlay[1] + ') input').addClass('winner');
 	 			break;
 	 			case 'row':
-	 				$('#t3 tr:nth-child(' + (winnerPlay[1] + 1) + ') input').addClass('winner');
+	 				console.log(winnerPlay);
+	 				$('#t3 tr:nth-child(' + winnerPlay[1] + ') input').addClass('winner');
 	 			break;
 	 			case 'ttb':
 	 				$('#t3 tr:nth-child(1) td:nth-child(1) input, ' +
