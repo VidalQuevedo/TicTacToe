@@ -107,9 +107,11 @@
 	 		
 	 	},
 	 	highlightWinnerPlay: function(){
-	 		switch (this.winnerPlay) {
-	 			case 'column-0':
-	 				$('#t3 td:nth-child(1) input').addClass('winner');
+	 		var winnerPlay = this.winnerPlay.split('-');
+	 		switch (winnerPlay[0]) {
+	 			case 'column':
+	 				console.log('#t3 td:nth-child(' + winnerPlay[1] + ') input');
+	 				$('#t3 td:nth-child(' + (winnerPlay[1] + 1) + ') input').addClass('winner');
 	 			break;
 	 			case 'column-2':
 	 				$('#t3 td:nth-child(3) input').addClass('winner');
