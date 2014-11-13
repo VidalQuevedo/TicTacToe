@@ -69,7 +69,9 @@ h1 {
 #control {
 	margin-top: 37px;
 }
-
+#message {
+	display:none;
+}
 #start-game {
 	font-family: 'gochi Hand', cursive;
 }

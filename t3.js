@@ -20,12 +20,13 @@
 
 			// update text in start button and hide it
 			$('#start-game').html('Play again >>').hide();
-			
+
+			// update #message with turn
+			this.updateMessage(this.playerTurn + '\'s turn!', 'bg-warning');
+
 			//hide alert
 			$('#alert').css('display', 'none');
 
-			// show current player
-			this.showCurrentPlayer();
 		},
 		setStarterPlayer: function(){
 			var playerOptions = ['x', 'o'];
@@ -150,8 +151,8 @@
 	 			break;
 	 		}
 	 	},
-	 	showCurrentPlayer: function(){
-	 		$('#player').html(this.playerTurn);
+	 	updateMessage: function(message, cssClass){
+	 		$('#message').html(message).addClass(cssClass).show();
 	 	},
 	 	bindEvents: function(){
 	 		var t3 = this;
