@@ -13,12 +13,15 @@ h1, h2 {
 }
 h1 {
 	font-size: 48px;
+	margin-top: 46px;
+	margin-bottom: 0px;
 }
 h2 {
 	font-size: 26px;
+	margin-top: 8px;
 }
 #t3 {
-	margin-top: 35px;
+	margin-top: 20px;
 	border-radius: 8px;
 	text-align: center;
 }
@@ -49,7 +52,8 @@ h2 {
 	border: none;
 	box-shadow: none;
 	background-color: transparent;
-	
+	font-family: 'gochi Hand', cursive;
+
 }
 
 #alert {
