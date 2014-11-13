@@ -10,15 +10,26 @@
  		startGame: function(){
 
 			// set properties
-			this.playerTurn = 'x';
+			this.playerTurn = this.setStarterPlayer();
 			this.numPlays = 0;
 			this.winner = '';
 			this.winnerPlay = '';
 
 			// clear board
 			$('#t3 input').val('').removeAttr('disabled').removeClass('winner');
+
+			// update text in start button and hide it
+			$('#start-game').html('Play again >>').hide();
+			
 			//hide alert
 			$('#alert').css('display', 'none');
+
+			// show current player
+			this.showCurrentPlayer();
+		},
+		setStarterPlayer: function(){
+			var playerOptions = ['x', 'o'];
+			return playerOptions[Math.floor(Math.random() + 0.5)];
 		},
 		checkPlay: function(){
 
@@ -83,6 +94,8 @@
  			{
  				this.playerTurn = 'x';
  			}
+ 			this.showCurrentPlayer();
+
  		},
  		getBoardValues: function(){
  			var boardValues = [];
@@ -137,10 +150,13 @@
 	 			break;
 	 		}
 	 	},
+	 	showCurrentPlayer: function(){
+	 		$('#player').html(this.playerTurn);
+	 	},
 	 	bindEvents: function(){
 	 		var t3 = this;
 	 		var winner = '';
-	 		$('#play-again').on('click', function(e){
+	 		$('#start-game').on('click', function(e){
 	 			t3.startGame();
 	 		});
 

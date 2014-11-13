@@ -16,12 +16,18 @@ h1 {
 	margin-top: 46px;
 	margin-bottom: 0px;
 }
-h2 {
+#turn {
 	font-size: 26px;
 	margin-top: 8px;
+
+	text-align: center;
+	font-family: 'gochi Hand', cursive;	
+}
+#turn span {
+	padding:4px 8px;
 }
 #t3 {
-	margin-top: 20px;
+	margin-top: 24px;
 	border-radius: 8px;
 	text-align: center;
 }
@@ -53,19 +59,27 @@ h2 {
 	box-shadow: none;
 	background-color: transparent;
 	font-family: 'gochi Hand', cursive;
-/*background-color: #ffe026;*/
+	/*background-color: #ffe026;*/
 }
 
 #t3 .form-control.winner {
 	background-color: #ffe026;
 }
 
-#alert {
+#control {
+	margin-top: 37px;
+}
+
+#start-game {
+	font-family: 'gochi Hand', cursive;
+}
+
+/*#alert {
 	text-align: right;
 	padding: 8px;
 	margin-top: 12px;z
 }
-
-#alert-text {
+*/
+/*#alert-text {
 	padding-top:7px;
-}
+}*/
