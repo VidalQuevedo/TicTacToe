@@ -36,6 +36,7 @@
 	 				if (this.boardValues[i][0] == this.boardValues[i][1] && this.boardValues[i][1] == this.boardValues[i][2]) {
 	 					// console.log('win row ' + i);
 	 					this.winner = this.playerTurn;
+	 					this.winnerPlay = 'row-' + i;	 					
 	 				}
 	 			}
 	 		}
@@ -55,7 +56,7 @@
 	 		if (this.boardValues[0][0] != '') {
 	 			if (this.boardValues[0][0] == this.boardValues[1][1] && this.boardValues[1][1] == this.boardValues[2][2]) {
 	 				// console.log('win across from top to bottom');
-	 				this.winner = this.playerTurn;
+	 				this.winner = this.playerTurn;	 				
 	 			}
 	 		}
 
@@ -107,14 +108,16 @@
 	 		
 	 	},
 	 	highlightWinnerPlay: function(){
+	 		
 	 		var winnerPlay = this.winnerPlay.split('-');
+	 		
 	 		switch (winnerPlay[0]) {
 	 			case 'column':
-	 				console.log('#t3 td:nth-child(' + winnerPlay[1] + ') input');
 	 				$('#t3 td:nth-child(' + (winnerPlay[1] + 1) + ') input').addClass('winner');
 	 			break;
-	 			case 'column-2':
-	 				$('#t3 td:nth-child(3) input').addClass('winner');
+	 			case 'row':
+	 				console.log('row');
+	 				$('#t3 tr:nth-child(' + (winnerPlay[1] + 1) + ') input').addClass('winner');
 	 			break;
 	 		}
 	 	},
