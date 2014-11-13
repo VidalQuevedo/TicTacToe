@@ -7,8 +7,11 @@ body { /* http://lea.verou.me/css3patterns/#lined-paper */
 }
 
 h1, h3 {
+	font-family: 'gochi Hand', cursive;
 	text-align: center;
+	font-weight: 700;
 }
+
 #t3 {
 	margin-top: 20px;
 	background-color: #CCC;
