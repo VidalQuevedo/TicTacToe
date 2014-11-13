@@ -6,12 +6,17 @@ body { /* http://lea.verou.me/css3patterns/#lined-paper */
 	background-size: 100% 2em;
 }
 
-h1, h3 {
+h1, h2 {
 	font-family: 'gochi Hand', cursive;
 	text-align: center;
 	font-weight: 700;
 }
-
+h1 {
+	font-size: 48px;
+}
+h2 {
+	font-size: 26px;
+}
 #t3 {
 	margin-top: 20px;
 	background-color: #CCC;
