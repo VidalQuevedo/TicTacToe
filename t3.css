@@ -70,6 +70,7 @@ h1 {
 }
 #message {
 	display:none;
+	font-size: 24px;
 }
 #start-game {
 }

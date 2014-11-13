@@ -116,9 +116,8 @@
 	 		$('#t3 input').attr('disabled', 'disabled');
 	 		
 	 		// display winning message
-	 		$('#alert').css('display', 'block');
+	 		this.updateMessage(this.winner.toUpperCase() + ' WINS!', 'bg-success');
 
-	 		$('#alert-text').text(this.winner.toUpperCase() + ' wins!');
 
 	 		
 	 		
@@ -126,15 +125,11 @@
 	 	highlightWinnerPlay: function(){
 	 		
 	 		var winnerPlay = this.winnerPlay.split('-');
-	 		console.log(winnerPlay);
 	 		switch (winnerPlay[0]) {
 	 			case 'column':
-	 			console.log(winnerPlay);
-	 			console.log('#t3 td:nth-child(' + (winnerPlay[1]) + ') input');
 	 			$('#t3 td:nth-child(' + winnerPlay[1] + ') input').addClass('winner');
 	 			break;
 	 			case 'row':
-	 			console.log(winnerPlay);
 	 			$('#t3 tr:nth-child(' + winnerPlay[1] + ') input').addClass('winner');
 	 			break;
 	 			case 'ttb':
@@ -150,7 +145,8 @@
 	 		}
 	 	},
 	 	updateMessage: function(message, cssClass){
-	 		$('#message').html(message).addClass(cssClass).fadeIn('fast');
+	 		console.log(message);
+	 		$('#message').html(message).removeClass().addClass(cssClass).fadeIn('fast');
 	 	},
 	 	bindEvents: function(){
 	 		var t3 = this;
@@ -180,9 +176,9 @@
 	 				} else {
 	 					// if no winner, toggle player turn
 	 					t3.togglePlayerTurn();
+	 					t3.updateMessage(t3.playerTurn + '\'s turn!', 'bg-warning');
 	 				}
 
-	 				t3.updateMessage(t3.playerTurn + '\'s turn!', 'bg-warning');
 
 	 			}
 	 		});
