@@ -95,8 +95,6 @@
  			{
  				this.playerTurn = 'x';
  			}
- 			this.showCurrentPlayer();
-
  		},
  		getBoardValues: function(){
  			var boardValues = [];
@@ -112,7 +110,7 @@
  		endGame: function(winner){
 
 
-			this.highlightWinnerPlay();
+ 			this.highlightWinnerPlay();
 
 	 		// disable all inputs
 	 		$('#t3 input').attr('disabled', 'disabled');
@@ -131,28 +129,28 @@
 	 		console.log(winnerPlay);
 	 		switch (winnerPlay[0]) {
 	 			case 'column':
-	 				console.log(winnerPlay);
-	 				console.log('#t3 td:nth-child(' + (winnerPlay[1]) + ') input');
-	 				$('#t3 td:nth-child(' + winnerPlay[1] + ') input').addClass('winner');
+	 			console.log(winnerPlay);
+	 			console.log('#t3 td:nth-child(' + (winnerPlay[1]) + ') input');
+	 			$('#t3 td:nth-child(' + winnerPlay[1] + ') input').addClass('winner');
 	 			break;
 	 			case 'row':
-	 				console.log(winnerPlay);
-	 				$('#t3 tr:nth-child(' + winnerPlay[1] + ') input').addClass('winner');
+	 			console.log(winnerPlay);
+	 			$('#t3 tr:nth-child(' + winnerPlay[1] + ') input').addClass('winner');
 	 			break;
 	 			case 'ttb':
-	 				$('#t3 tr:nth-child(1) td:nth-child(1) input, ' +
-	 				  '#t3 tr:nth-child(2) td:nth-child(2) input, ' +
-	 				  '#t3 tr:nth-child(3) td:nth-child(3) input').addClass('winner');
+	 			$('#t3 tr:nth-child(1) td:nth-child(1) input, ' +
+	 				'#t3 tr:nth-child(2) td:nth-child(2) input, ' +
+	 				'#t3 tr:nth-child(3) td:nth-child(3) input').addClass('winner');
 	 			break;
 	 			case 'btt':
-	 				$('#t3 tr:nth-child(3) td:nth-child(1) input, ' +
-	 				  '#t3 tr:nth-child(2) td:nth-child(2) input, ' +
-	 				  '#t3 tr:nth-child(1) td:nth-child(3) input').addClass('winner');
+	 			$('#t3 tr:nth-child(3) td:nth-child(1) input, ' +
+	 				'#t3 tr:nth-child(2) td:nth-child(2) input, ' +
+	 				'#t3 tr:nth-child(1) td:nth-child(3) input').addClass('winner');
 	 			break;
 	 		}
 	 	},
 	 	updateMessage: function(message, cssClass){
-	 		$('#message').html(message).addClass(cssClass).show();
+	 		$('#message').html(message).addClass(cssClass).fadeIn('fast');
 	 	},
 	 	bindEvents: function(){
 	 		var t3 = this;
@@ -183,6 +181,8 @@
 	 					// if no winner, toggle player turn
 	 					t3.togglePlayerTurn();
 	 				}
+
+	 				t3.updateMessage(t3.playerTurn + '\'s turn!', 'bg-warning');
 
 	 			}
 	 		});
