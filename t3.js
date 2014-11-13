@@ -2,7 +2,7 @@
 
  (function(T, $){
  	var T3 = function(){
- 		this.startGame();
+ 		// this.startGame();
  		this.bindEvents();
  	}
 
