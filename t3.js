@@ -1,18 +1,19 @@
  var T = T || {};
 
-(function(T, $){
-	var T3 = function(){
-		this.startGame();
-		this.bindEvents();
-	}
+ (function(T, $){
+ 	var T3 = function(){
+ 		this.startGame();
+ 		this.bindEvents();
+ 	}
 
-	T3.prototype = {
-		startGame: function(){
-			
+ 	T3.prototype = {
+ 		startGame: function(){
+
 			// set properties
 			this.playerTurn = 'x';
-			this.winner = '';
 			this.numPlays = 0;
+			this.winner = '';
+			this.winnerPlay = '';
 
 			// clear board
 			$('#t3 input').val('').removeAttr('disabled');
@@ -45,6 +46,7 @@
 	 				if (this.boardValues[0][i] == this.boardValues[1][i] && this.boardValues[1][i] == this.boardValues[2][i]) {
 	 					// console.log('win column ' + i);
 	 					this.winner = this.playerTurn;
+	 					this.winnerPlay = 'column-' + i;
 	 				}
 	 			}
 	 		}
@@ -90,14 +92,29 @@
  		},
  		endGame: function(winner){
 
+
+			this.highlightWinnerPlay();
+
 	 		// disable all inputs
 	 		$('#t3 input').attr('disabled', 'disabled');
 	 		
 	 		// display winning message
 	 		$('#alert').css('display', 'block');
+
 	 		$('#alert-text').text(this.winner.toUpperCase() + ' wins!');
+
 	 		
 	 		
+	 	},
+	 	highlightWinnerPlay: function(){
+	 		switch (this.winnerPlay) {
+	 			case 'column-0':
+	 				$('#t3 td:nth-child(1) input').addClass('winner');
+	 			break;
+	 			case 'column-2':
+	 				$('#t3 td:nth-child(3) input').addClass('winner');
+	 			break;
+	 		}
 	 	},
 	 	bindEvents: function(){
 	 		var t3 = this;
